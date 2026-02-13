@@ -42,4 +42,4 @@ int main(){
     for(auto v: vehiculos)
         delete v;
     return 0;
-}
+}   

@@ -69,9 +69,9 @@ void Reserva::modificarestado(int estado){
     estadoreserva= estado;
 }
 void Reserva::calcularMontoTotal(){
-        int dias = fechasalida.dia-fechainicio.dia;
-        if(dias<1) dias=1;
-        montotal= dias * habitacion->precioxnoche;
+        int noches = fechasalida.dia-fechainicio.dia;
+        if(noches<1) noches=1;
+        montotal= noches * habitacion->precioxnoche;
 }
 Cliente* Reserva::getCliente(){
     return cliente;
@@ -110,30 +110,33 @@ void Habitacion::actualizarestado(int ace){
 //-----------
 class Hotel{
     private:
-        vector<Habitacion> habitaciones;
+        vector<Habitacion*> habitaciones;
     public:
         string nombre;
         string idhotel;
         Hotel(string nomh="nd",string idhot="000");
-        void agregarHabitacion(Habitacion h);
+        void agregarHabitacion(Habitacion* h);
+        vector<Habitacion*> getHabitaciones();
 };
 Hotel::Hotel(string nomh,string idhot){
     nombre=nomh;
     idhotel=idhot;
 }
-void Hotel::agregarHabitacion(Habitacion h){
+void Hotel::agregarHabitacion(Habitacion* h){
     habitaciones.push_back(h);
 }
-
+vector<Habitacion*> Hotel::getHabitaciones(){
+    return habitaciones;
+}
 int main(){
     Hotel hotel("Continental la de john wick xd","012514");
     Habitacion h1("HAB01", "101", 2, 120.0, 1);
     Habitacion h2("HAB02", "102", 3, 150.0, 1);
     Habitacion h3("HAB03", "103", 1, 90.0, 0);
     Habitacion h4("HAB04", "104", 4, 200.0, 1);
-    hotel.agregarHabitacion(h1);    
-    hotel.agregarHabitacion(h2);    
-    hotel.agregarHabitacion(h3);    
-    hotel.agregarHabitacion(h4);      
+    hotel.agregarHabitacion(&h1);    
+    hotel.agregarHabitacion(&h2);    
+    hotel.agregarHabitacion(&h3);    
+    hotel.agregarHabitacion(&h4);      
     return 0;
 }

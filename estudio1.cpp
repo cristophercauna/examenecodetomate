@@ -2,12 +2,16 @@
 using namespace std;
 int sumaarreglo(int,int []);
 int main(){
+    cout<<"hola";
     int n,suma=0;
+    cin>>n;
     int A[1000000];
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i++){
     cin>>A[i];
+    }
     suma=sumaarreglo(n,A);
     cout<<suma;
+
     return 0;
 }
 int sumaarreglo(int n,int A[]){
